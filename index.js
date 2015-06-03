@@ -22,8 +22,7 @@ TemplatePrecompiler.prototype.extensions = [];
 TemplatePrecompiler.prototype.targetExtension = 'js';
 
 TemplatePrecompiler.prototype.processString = function (string, relativePath) {
-  var extensionRegex = /.ejs/gi;
-  var filename = relativePath.toString().split('templates' + path.sep).reverse()[0].replace(extensionRegex, '');
+  var filename = path.basename(relativePath, path.extname(relativePath));
   var template = this.options.compile(string);
   if (this.options.module === true) {
     return "export default " + template;
