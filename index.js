@@ -22,7 +22,7 @@ TemplatePrecompiler.prototype.extensions = [];
 TemplatePrecompiler.prototype.targetExtension = 'js';
 
 TemplatePrecompiler.prototype.processString = function (string, relativePath) {
-  var filename = path.basename(relativePath, path.extname(relativePath));
+  var filename = relativePath.replace(path.extname(relativePath), '');
   var template = this.options.compile(string);
   if (this.options.module === true) {
     return "export default " + template;
